@@ -21,7 +21,6 @@ class Nucleus{
             setIsBroke(true);
         }
 
-        return this.hp
         
     }
 

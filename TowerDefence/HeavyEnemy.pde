@@ -1,4 +1,4 @@
-class HeavyEnemy extends Nemico {
+class HeavyEnemy extends Enemy{
   HeavyEnemy(float x, float y) {
     super(x, y, 50, 1, 7);
   }

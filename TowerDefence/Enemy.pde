@@ -1,7 +1,7 @@
 abstract class Enemy{
     protected float x;
     protected float y;
-    protected int healt;
+    protected int health;
     protected float speed;
     protected int damage;
 
