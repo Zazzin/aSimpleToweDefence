@@ -1,4 +1,4 @@
-class MidEnemy extends Enemy {
+class LightEnemy extends Enemy {
   MidEnemy(float x, float y) {
     super(x, y, 30, 4, 5);
   }
