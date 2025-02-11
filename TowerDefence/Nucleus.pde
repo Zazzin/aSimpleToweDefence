@@ -6,13 +6,19 @@ class Nucleus{
         return this.isBroke;
     }
 
+    void setIsBroke(boolean inputValue){
+        this.isBroke = inputValue;
+    }
+
     int getHp(){
         return this.hp; 
     }
 
     void decrestHp(int pointToDecrest){
         if(getHp() >= 0){
-            return getHp() - pointToDecrest;
+            this.hp = getHp() - pointToDecrest;
+        }else{
+            setIsBroke(true);
         }
 
         return this.hp
