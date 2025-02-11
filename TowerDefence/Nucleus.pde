@@ -1,6 +1,6 @@
 class Nucleus{
-    int hp = 30;
-    boolean isBroke = false;
+    protected int hp = 30;
+    protected boolean isBroke = false;
 
     boolean getIsBroke(){
         return this.isBroke;
