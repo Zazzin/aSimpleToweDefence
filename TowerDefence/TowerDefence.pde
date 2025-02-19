@@ -1,5 +1,6 @@
 ArrayList<Enemy> nemici;
 ArrayList<Tower> torrete;
+ArrayList<int[]> enemyPath;
 Field grid;
 
 void settings() {
