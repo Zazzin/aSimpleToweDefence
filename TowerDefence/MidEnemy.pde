@@ -1,6 +1,6 @@
 class MidEnemy extends Enemy {
-  MidEnemy(float x, float y) {
-    super(x, y, 50, 2.5, 3);
+  MidEnemy(float x, float y, ArrayList<int[]> path) {
+    super(x, y, 50, 2.5f, 3, path);
   }
   
   // square

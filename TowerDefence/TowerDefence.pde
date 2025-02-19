@@ -13,10 +13,17 @@ void setup() {
   
   nemici = new ArrayList<Enemy>();
   torrete = new ArrayList<Tower>();
+  enemyPath = new ArrayList<>();
 
-  nemici.add(new LightEnemy(10, 10));
-  nemici.add(new MidEnemy(60, 150));
-  nemici.add(new HeavyEnemy(80, 120));
+  enemyPath.add(new int[]{400, 200});
+  /*enemyPath.add(new int[]{200, 10});
+  enemyPath.add(new int[]{200, 10});
+  enemyPath.add(new int[]{200, 10});
+  enemyPath.add(new int[]{200, 10});*/
+
+  nemici.add(new LightEnemy(10, 200, enemyPath));
+  nemici.add(new MidEnemy(10, 200, enemyPath));
+  nemici.add(new HeavyEnemy(10, 200, enemyPath));
 }
 
 void draw() {
@@ -30,6 +37,7 @@ void draw() {
     if(!n.isAlive()){
       nemici.remove(i);
     }
+    n.move();
     
     // if enemy is out of bounds you need to remove it
     if (n.x < -50) {

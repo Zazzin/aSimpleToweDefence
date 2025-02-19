@@ -1,6 +1,6 @@
 class HeavyEnemy extends Enemy{
-  HeavyEnemy(float x, float y) {
-    super(x, y, 50, 1, 7);
+  HeavyEnemy(float x, float y, ArrayList<int[]> path) {
+    super(x, y, 50, 1, 7, path);  
   }
   
   // Circle
