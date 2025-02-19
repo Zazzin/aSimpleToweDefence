@@ -22,6 +22,10 @@ class Field{
       }
     }
   }
+
+  int getCellSize(){
+    return this.cellSize;
+  }
   
   void disableCells(int startCol, int startRow, int numCols, int numRows) {
     for (int i = startCol; i < startCol + numCols && i < cols; i++) {

@@ -1,10 +1,18 @@
 abstract class Tower {
-    float x, 
+    float x;
     float y; 
     float range; 
     int damage; 
     int cooldown; // recharge time for the next bullet
     int timer = 0; // timer to start the recharge process
+
+    Tower(){
+        this.x = 0;
+        this.y = 0;
+        this.range = 0.0;
+        this.damage = 0;
+        this.cooldown = 0;
+    }
 
     Tower(float x, float y, float range, int damage, int cooldown) {
         this.x = x;
