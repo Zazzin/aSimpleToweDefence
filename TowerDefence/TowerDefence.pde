@@ -2,6 +2,7 @@ ArrayList<Enemy> nemici;
 ArrayList<Tower> torrete;
 ArrayList<int[]> enemyPath;
 Field grid;
+Nucleus core;
 
 void settings() {
   size(10 * 40, 10 * 40);
@@ -15,22 +16,27 @@ void setup() {
   torrete = new ArrayList<Tower>();
   enemyPath = new ArrayList<>();
 
-  enemyPath.add(new int[]{120, 89});
-  enemyPath.add(new int[]{280, 98});
+  //enemyPath.add(new int[]{120, 89});
+  enemyPath.add(new int[]{200, 200});
   
+  int centerCol = 10 / 2; // ad esempio 5 (considerando celle da 0 a 9)
+  int centerRow = 10 / 2; // ad esempio 5
+  float coreX = centerCol * grid.getCellSize() + grid.getCellSize() / 2;
+  float coreY = centerRow * grid.getCellSize() + grid.getCellSize() / 2;
+  core = new Nucleus(coreX, coreY);
 
   /*enemyPath.add(new int[]{200, 10});
   enemyPath.add(new int[]{200, 10});
   enemyPath.add(new int[]{200, 10});
   enemyPath.add(new int[]{200, 10});*/
 
-  nemici.add(new LightEnemy(15, 335, enemyPath));
-  nemici.add(new MidEnemy(15, 325, enemyPath));
-  nemici.add(new HeavyEnemy(70, 340, enemyPath));
-
-  nemici.add(spawnRandomEnemy());
-  nemici.add(spawnRandomEnemy());
-  nemici.add(spawnRandomEnemy());
+  // nemici.add(new LightEnemy(15, 335, enemyPath));
+  // nemici.add(new MidEnemy(15, 325, enemyPath));
+  // nemici.add(new HeavyEnemy(70, 340, enemyPath));
+  
+  for(int i = 0; i <= 200; i++){
+    nemici.add(spawnRandomEnemy());
+  }
 }
 
 void draw() {
@@ -38,17 +44,30 @@ void draw() {
   grid.initGrid();
   grid.drawGrid();
 
-  for (int i = nemici.size() - 1; i >= 0; i--) {
-    Enemy n = nemici.get(i);
-    n.display();
+  core.draw();
 
-    if(!n.isAlive()){
+  for (int i = nemici.size() - 1; i >= 0; i--) {
+    Enemy enemy = nemici.get(i);
+    
+    enemy.display();
+    if(!enemy.isAlive()){
       nemici.remove(i);
     }
-    n.move();
+    enemy.move();
     
-    // if enemy is out of bounds you need to remove it
-    if (n.x < -50) {
+    // Controllo collisione con il nucleo:
+    // utilizzo la funzione dist() per misurare la distanza tra il centro del nemico e quello del nucleo
+    float d = dist(enemy.x, enemy.y, core.x, core.y);
+    float enemyRadius = enemy.getRadius();
+    float coreRadius = core.size / 2;  // approssimiamo il nucleo come un cerchio
+    
+    if (d < enemyRadius + coreRadius) {
+      // Decrementa la vita del nucleo in base al danno del nemico
+      core.decrestHp(enemy.damage);
+    }
+    
+    // Se il nemico esce fuori dai limiti, lo rimuovo
+    if (enemy.x < -50) {
       nemici.remove(i);
     }
   }

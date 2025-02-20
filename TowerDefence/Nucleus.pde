@@ -1,6 +1,18 @@
 class Nucleus{
-    protected int hp = 30;
-    protected boolean isBroke = false;
+    protected int hp;
+    protected boolean isBroke;
+    float x;
+    float y;
+    protected float size;
+
+
+    Nucleus(float x, float y) {
+        this.x = x;
+        this.y = y;
+        this.hp = 30;
+        this.isBroke = false;
+        this.size = 40;
+    }
 
     boolean getIsBroke(){
         return this.isBroke;
@@ -27,4 +39,20 @@ class Nucleus{
     void resetHp(){
         this.hp = 30;
     }
+
+    void draw() {
+        fill(0, 0, 255);       // Colore di riempimento (blu)
+        stroke(0);             // Colore del bordo (nero)
+        strokeWeight(2);       // Spessore del bordo
+        float halfSize = size / 2;
+    
+        beginShape();
+        vertex(x, y - halfSize); // vertice superiore
+        vertex(x + halfSize, y); // vertice destro
+        vertex(x, y + halfSize); // vertice inferiore
+        vertex(x - halfSize, y); // vertice sinistro
+        endShape(CLOSE);
+  }
+
+
 }

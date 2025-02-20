@@ -8,4 +8,8 @@ class LightEnemy extends Enemy {
     fill(255, 0, 0); // give red color
     rect(x, y, 40, 20);
   }
+
+  float getRadius() {
+    return 25 / 2.0;
+  }
 }

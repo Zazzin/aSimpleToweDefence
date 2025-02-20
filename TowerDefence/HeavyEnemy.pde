@@ -8,4 +8,8 @@ class HeavyEnemy extends Enemy{
     fill(0, 0, 255); // blu
     ellipse(x, y, 30, 30);
   }
+
+  float getRadius() {
+    return 35 / 2.0;
+  }
 }

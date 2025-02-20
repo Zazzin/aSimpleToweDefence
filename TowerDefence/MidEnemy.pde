@@ -8,4 +8,8 @@ class MidEnemy extends Enemy {
     fill(0, 255, 0); // verde
     rect(x, y, 30, 30);
   }
+
+  float getRadius() {
+    return 30 / 2.0;
+  }
 }

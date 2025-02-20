@@ -45,11 +45,12 @@ abstract class Enemy{
         this.y = inputY;
     }
 
-    abstract void display();
-
     boolean isAlive() {
         return health > 0;
     }
 
+    abstract void display();
+
+    abstract float getRadius();
 
 }
