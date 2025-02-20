@@ -27,12 +27,16 @@ void setup() {
   nemici.add(new LightEnemy(15, 335, enemyPath));
   nemici.add(new MidEnemy(15, 325, enemyPath));
   nemici.add(new HeavyEnemy(70, 340, enemyPath));
+
+  nemici.add(spawnRandomEnemy());
+  nemici.add(spawnRandomEnemy());
+  nemici.add(spawnRandomEnemy());
 }
 
 void draw() {
   background(255);
   grid.initGrid();
-  //grid.drawGrid();
+  grid.drawGrid();
 
   for (int i = nemici.size() - 1; i >= 0; i--) {
     Enemy n = nemici.get(i);
@@ -70,5 +74,33 @@ void mousePressed() {
   if(grid.clickableGrid[col][row]){
     torrete.add(builder.createTower(x, y, this));
     //grid.clickableGrid = false;
+  }
+}
+
+Enemy spawnRandomEnemy() {
+  int col, row;
+  // Scegli casualmente il margine: superiore o sinistro
+  if (random(1) < 0.5) {
+    // Spawn sul margine superiore: riga fissa a 0, colonna casuale (0-9)
+    col = (int) random(0, 10);
+    row = 0;
+  } else {
+    // Spawn sul margine sinistro: colonna fissa a 0, riga casuale (0-9)
+    col = 0;
+    row = (int) random(0, 10);
+  }
+  
+  // Calcola la posizione centrata nella cella scelta
+  float x = col * grid.getCellSize() + grid.getCellSize() / 2;
+  float y = row * grid.getCellSize() + grid.getCellSize() / 2;
+  
+  // Usa un valore random per determinare la tipologia del nemico
+  float tipo = random(30);
+  if (tipo < 10) {
+    return new LightEnemy((int)x, (int)y, enemyPath);
+  } else if (tipo < 20) {
+    return new MidEnemy((int)x, (int)y, enemyPath);
+  } else {
+    return new HeavyEnemy((int)x, (int)y, enemyPath);
   }
 }
