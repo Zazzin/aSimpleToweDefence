@@ -37,6 +37,10 @@ abstract class Enemy{
         }
     }
 
+    int getDamage(){
+        return this.damage;
+    }
+
     void setX(float inputX){
         this.x = inputX;
     }

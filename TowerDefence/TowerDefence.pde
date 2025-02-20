@@ -35,6 +35,8 @@ void draw() {
   grid.drawGrid();
 
   core.draw();
+  print("Nucleus HP: " + core.getHp() + " ");
+  
 
   if (millis() - startTime >= spawnDelay) {
     // Spawn one or more enemies
@@ -62,7 +64,13 @@ void draw() {
     
     if (d < enemyRadius + coreRadius) {
       // Decrementa la vita del nucleo in base al danno del nemico
-      core.decrestHp(enemy.damage);
+      core.decrestHp(enemy.getDamage());
+      if(core.getHp() <= 0){
+        print("NUCLEUS BROKE");
+        core.setColors(color(255,0,0));
+      }else{
+        core.setColors(color(0,0,255));
+      }
     }
     
     // Se il nemico esce fuori dai limiti, lo rimuovo

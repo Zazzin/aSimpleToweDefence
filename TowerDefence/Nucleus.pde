@@ -4,6 +4,7 @@ class Nucleus{
     float x;
     float y;
     protected float size;
+    color colors;
 
 
     Nucleus(float x, float y) {
@@ -16,6 +17,10 @@ class Nucleus{
 
     boolean getIsBroke(){
         return this.isBroke;
+    }
+
+    void setColors(color newColor){
+        this.colors = newColor;
     }
 
     void setIsBroke(boolean inputValue){
@@ -32,7 +37,6 @@ class Nucleus{
         }else{
             setIsBroke(true);
         }
-
         
     }
 
@@ -41,7 +45,7 @@ class Nucleus{
     }
 
     void draw() {
-        fill(0, 0, 255);       // Colore di riempimento (blu)
+        fill(colors);       // Colore di riempimento (blu)
         stroke(0);             // Colore del bordo (nero)
         strokeWeight(2);       // Spessore del bordo
         float halfSize = size / 2;
