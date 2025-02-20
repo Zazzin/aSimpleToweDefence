@@ -1,6 +1,6 @@
 class LightEnemy extends Enemy {
   LightEnemy(float x, float y, ArrayList<int[]> path) {
-        super(x, y, 30, 4, 5, path);
+    super(x, y, 30, 4, 5, path);
   }
   
   //rectangle

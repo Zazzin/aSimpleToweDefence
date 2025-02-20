@@ -81,8 +81,14 @@ class Field{
     }
     
     
-    disableCells(0/*start colum*/, 4/*end rows*/, 10/*num of colum to disable*/, 1/*num of rows to disable*/); //calling the funtion to disable the cells
+    disableCells(0/*start colum*/, 8/*end rows*/, 4/*num of colum to disable*/, 1/*num of rows to disable*/); //calling the funtion to disable the cells
+    disableCells(3/*start colum*/, 3/*end rows*/, 1/*num of colum to disable*/, 5/*num of rows to disable*/);
+    disableCells(3/*start colum*/, 2/*end rows*/, 4/*num of colum to disable*/, 1/*num of rows to disable*/);
+    disableCells(7/*start colum*/, 2/*end rows*/, 1/*num of colum to disable*/, 5/*num of rows to disable*/);
+    disableCells(8/*start colum*/, 6/*end rows*/, 2/*num of colum to disable*/, 1/*num of rows to disable*/);
   }
 }
+
+  
 
   

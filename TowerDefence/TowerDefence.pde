@@ -9,26 +9,30 @@ void settings() {
 
 void setup() {
   grid = new Field(10, 10, 40);
-  grid.disableCells(0, 4, 10, 1);
+  grid.initGrid();
   
   nemici = new ArrayList<Enemy>();
   torrete = new ArrayList<Tower>();
   enemyPath = new ArrayList<>();
 
-  enemyPath.add(new int[]{400, 200});
+  enemyPath.add(new int[]{120, 89});
+  enemyPath.add(new int[]{280, 98});
+  
+
   /*enemyPath.add(new int[]{200, 10});
   enemyPath.add(new int[]{200, 10});
   enemyPath.add(new int[]{200, 10});
   enemyPath.add(new int[]{200, 10});*/
 
-  nemici.add(new LightEnemy(10, 200, enemyPath));
-  nemici.add(new MidEnemy(10, 200, enemyPath));
-  nemici.add(new HeavyEnemy(10, 200, enemyPath));
+  nemici.add(new LightEnemy(15, 335, enemyPath));
+  nemici.add(new MidEnemy(15, 325, enemyPath));
+  nemici.add(new HeavyEnemy(70, 340, enemyPath));
 }
 
 void draw() {
   background(255);
-  grid.drawGrid();
+  grid.initGrid();
+  //grid.drawGrid();
 
   for (int i = nemici.size() - 1; i >= 0; i--) {
     Enemy n = nemici.get(i);
