@@ -3,12 +3,16 @@ ArrayList<Tower> torrete;
 ArrayList<int[]> enemyPath;
 Field grid;
 Nucleus core;
+boolean spawnEnemies = false; // flag to ensure we spawn only once
+int spawnDelay = 200000;       // 30 seconds delay (in milliseconds)
+int startTime;
 
 void settings() {
   size(10 * 40, 10 * 40);
 }
 
 void setup() {
+  startTime = millis();
   grid = new Field(10, 10, 40);
   grid.initGrid();
   
@@ -16,7 +20,6 @@ void setup() {
   torrete = new ArrayList<Tower>();
   enemyPath = new ArrayList<>();
 
-  //enemyPath.add(new int[]{120, 89});
   enemyPath.add(new int[]{200, 200});
   
   int centerCol = 10 / 2; // ad esempio 5 (considerando celle da 0 a 9)
@@ -24,19 +27,6 @@ void setup() {
   float coreX = centerCol * grid.getCellSize() + grid.getCellSize() / 2;
   float coreY = centerRow * grid.getCellSize() + grid.getCellSize() / 2;
   core = new Nucleus(coreX, coreY);
-
-  /*enemyPath.add(new int[]{200, 10});
-  enemyPath.add(new int[]{200, 10});
-  enemyPath.add(new int[]{200, 10});
-  enemyPath.add(new int[]{200, 10});*/
-
-  // nemici.add(new LightEnemy(15, 335, enemyPath));
-  // nemici.add(new MidEnemy(15, 325, enemyPath));
-  // nemici.add(new HeavyEnemy(70, 340, enemyPath));
-  
-  for(int i = 0; i <= 200; i++){
-    nemici.add(spawnRandomEnemy());
-  }
 }
 
 void draw() {
@@ -45,6 +35,15 @@ void draw() {
   grid.drawGrid();
 
   core.draw();
+
+  if (millis() - startTime >= spawnDelay) {
+    // Spawn one or more enemies
+    nemici.add(spawnRandomEnemy());
+    // (Optionally, spawn multiple enemies if desired)
+    println("Enemy spawned at: " + millis());
+    startTime = millis();  // reset the timer for the next spawn
+  }
+  startTime -= 3000;
 
   for (int i = nemici.size() - 1; i >= 0; i--) {
     Enemy enemy = nemici.get(i);
