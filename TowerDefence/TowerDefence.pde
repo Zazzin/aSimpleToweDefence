@@ -6,6 +6,7 @@ Nucleus core;
 boolean spawnEnemies = false; // flag to ensure we spawn only once
 int spawnDelay = 200000;       // 30 seconds delay (in milliseconds)
 int startTime;
+int gameStartTime;             // tempo d'inizio per il timer di 30 secondi
 
 void settings() {
   size(10 * 40, 10 * 40);
@@ -30,6 +31,27 @@ void setup() {
 }
 
 void draw() {
+
+  if(millis() - gameStartTime >= 30000) {
+    background(0);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text("YOU WIN", width/2, height/2);
+    noLoop(); // interrompe il ciclo draw()
+    return;
+  }
+
+  if(core.getHp() <= 0){
+    background(0);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(32);
+    text("GAME OVER", width/2, height/2);
+    noLoop(); // interrompe il ciclo draw()
+    return;
+  }
+  
   background(255);
   grid.initGrid();
   grid.drawGrid();
@@ -71,12 +93,15 @@ void draw() {
       }else{
         core.setColors(color(0,0,255));
       }
+      nemici.remove(i);
+
     }
     
     // Se il nemico esce fuori dai limiti, lo rimuovo
     if (enemy.x < -50) {
       nemici.remove(i);
     }
+
   }
 
   for(Tower t : torrete){

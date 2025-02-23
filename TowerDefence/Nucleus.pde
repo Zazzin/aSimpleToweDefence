@@ -10,7 +10,7 @@ class Nucleus{
     Nucleus(float x, float y) {
         this.x = x;
         this.y = y;
-        this.hp = 30;
+        this.hp = 80;
         this.isBroke = false;
         this.size = 40;
     }
@@ -32,6 +32,12 @@ class Nucleus{
     }
 
     void decrestHp(int pointToDecrest){
+        if(getHp() <= 0){
+            this.hp = 0;
+            setIsBroke(true);
+        }
+
+
         if(getHp() >= 0){
             this.hp = getHp() - pointToDecrest;
         }else{
