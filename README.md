@@ -19,6 +19,6 @@ le classi delle torrette ereditanto tutte la classe astratta Tower che estende t
 # Le problematiche 
 indirizzamento degli avversari verso un deterinato percorso rispettando un percorso "complesso", ho deciso di implementare quindi lo spawning dei nemici sul margine sinistro e alto per semplificare il percorso da fare. 
 
-#UML
+# UML
 
 ![Nuovo prova](https://github.com/user-attachments/assets/47db5118-c1e3-4c55-aad1-7cd3c8965ff8)
