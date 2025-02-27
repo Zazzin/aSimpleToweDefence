@@ -6,7 +6,7 @@ Nucleus core;
 boolean spawnEnemies = false; // flag to ensure we spawn only once
 int spawnDelay = 200000;       // 30 seconds delay (in milliseconds)
 int startTime;
-int gameStartTime;             // tempo d'inizio per il timer di 30 secondi
+int gameStartTime = 300000;
 
 void settings() {
   size(10 * 40, 10 * 40);
@@ -23,8 +23,8 @@ void setup() {
 
   enemyPath.add(new int[]{200, 200});
   
-  int centerCol = 10 / 2; // ad esempio 5 (considerando celle da 0 a 9)
-  int centerRow = 10 / 2; // ad esempio 5
+  int centerCol = 10 / 2;
+  int centerRow = 10 / 2; 
   float coreX = centerCol * grid.getCellSize() + grid.getCellSize() / 2;
   float coreY = centerRow * grid.getCellSize() + grid.getCellSize() / 2;
   core = new Nucleus(coreX, coreY);
@@ -38,7 +38,7 @@ void draw() {
     textAlign(CENTER, CENTER);
     textSize(32);
     text("YOU WIN", width/2, height/2);
-    noLoop(); // interrompe il ciclo draw()
+    noLoop(); // interup of draw()
     return;
   }
 
@@ -48,7 +48,7 @@ void draw() {
     textAlign(CENTER, CENTER);
     textSize(32);
     text("GAME OVER", width/2, height/2);
-    noLoop(); // interrompe il ciclo draw()
+    noLoop(); // interup of draw()
     return;
   }
   
@@ -58,12 +58,11 @@ void draw() {
 
   core.draw();
   print("Nucleus HP: " + core.getHp() + " ");
-  
+
 
   if (millis() - startTime >= spawnDelay) {
     // Spawn one or more enemies
     nemici.add(spawnRandomEnemy());
-    // (Optionally, spawn multiple enemies if desired)
     println("Enemy spawned at: " + millis());
     startTime = millis();  // reset the timer for the next spawn
   }
@@ -85,7 +84,7 @@ void draw() {
     float coreRadius = core.size / 2;  // approssimiamo il nucleo come un cerchio
     
     if (d < enemyRadius + coreRadius) {
-      // Decrementa la vita del nucleo in base al danno del nemico
+      // Decrest the hp nucleus based at the enemy damage
       core.decrestHp(enemy.getDamage());
       if(core.getHp() <= 0){
         print("NUCLEUS BROKE");
@@ -97,7 +96,7 @@ void draw() {
 
     }
     
-    // Se il nemico esce fuori dai limiti, lo rimuovo
+    // if the enemy if out of bounds i remove it
     if (enemy.x < -50) {
       nemici.remove(i);
     }
@@ -113,7 +112,7 @@ void draw() {
 void mousePressed() {
  //change the gird state
   grid.toggleCell(mouseX, mouseY);
-  int col = mouseX / grid.getCellSize(); //determinate the begin of the cells 
+  int col = mouseX / grid.getCellSize(); //determinate the begin of the cells
   int row = mouseY / grid.getCellSize();
 
   //place the tower at the center of the cell
@@ -124,28 +123,24 @@ void mousePressed() {
 
   if(grid.clickableGrid[col][row]){
     torrete.add(builder.createTower(x, y, this));
-    //grid.clickableGrid = false;
   }
+
 }
 
 Enemy spawnRandomEnemy() {
   int col, row;
-  // Scegli casualmente il margine: superiore o sinistro
   if (random(1) < 0.5) {
-    // Spawn sul margine superiore: riga fissa a 0, colonna casuale (0-9)
     col = (int) random(0, 10);
     row = 0;
   } else {
-    // Spawn sul margine sinistro: colonna fissa a 0, riga casuale (0-9)
     col = 0;
     row = (int) random(0, 10);
   }
   
-  // Calcola la posizione centrata nella cella scelta
   float x = col * grid.getCellSize() + grid.getCellSize() / 2;
   float y = row * grid.getCellSize() + grid.getCellSize() / 2;
   
-  // Usa un valore random per determinare la tipologia del nemico
+  
   float tipo = random(30);
   if (tipo < 10) {
     return new LightEnemy((int)x, (int)y, enemyPath);

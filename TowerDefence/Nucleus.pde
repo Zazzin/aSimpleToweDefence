@@ -46,21 +46,19 @@ class Nucleus{
         
     }
 
-    void resetHp(){
-        this.hp = 30;
-    }
-
     void draw() {
-        fill(colors);       // Colore di riempimento (blu)
-        stroke(0);             // Colore del bordo (nero)
-        strokeWeight(2);       // Spessore del bordo
+        fill(colors);
+        //border color and weight
+        stroke(0);
+        strokeWeight(2);
         float halfSize = size / 2;
-    
+
+        //create the nucleus shap
         beginShape();
-        vertex(x, y - halfSize); // vertice superiore
-        vertex(x + halfSize, y); // vertice destro
-        vertex(x, y + halfSize); // vertice inferiore
-        vertex(x - halfSize, y); // vertice sinistro
+        vertex(x, y - halfSize);
+        vertex(x + halfSize, y); 
+        vertex(x, y + halfSize); 
+        vertex(x - halfSize, y);
         endShape(CLOSE);
   }
 

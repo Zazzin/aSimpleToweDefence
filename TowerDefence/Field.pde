@@ -41,13 +41,13 @@ class Field{
       for (int j = 0; j < rows; j++) {
         // if the cell is not clickable i paint it whit a different color 
         if (!clickableGrid[i][j]) {
-          fill(150, 150, 150);
+          fill(135, 97, 47);
         } else {
           // the clickable cell are activated and the cell is green; the disable one are gray
           if (grid[i][j]) {
-            fill(100, 200, 100);
+            fill(135, 97, 47);
           } else {
-            fill(200, 200, 200);
+            fill(60, 195, 60);
           }
         }
         stroke(0);
