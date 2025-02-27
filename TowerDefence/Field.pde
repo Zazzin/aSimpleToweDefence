@@ -51,6 +51,7 @@ class Field{
           }
         }
         stroke(0);
+        strokeWeight(0);
         rect(i * cellSize, j * cellSize, cellSize, cellSize);
       }
     }

@@ -6,7 +6,7 @@ Nucleus core;
 boolean spawnEnemies = false; // flag to ensure we spawn only once
 int spawnDelay = 200000;       // 30 seconds delay (in milliseconds)
 int startTime;
-int gameStartTime = 300000;
+int gameStartTime;
 
 void settings() {
   size(10 * 40, 10 * 40);
